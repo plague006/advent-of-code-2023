@@ -7,7 +7,7 @@ input_folder = (Path(__file__).parent / "input").resolve()
 input_folder.mkdir(exist_ok=True)
 
 # Create helper
-helper = project_folder / "aoc_helper.py"
+helper = project_folder / "helper.py"
 helper.write_text(
     r"""from pathlib import Path
 
