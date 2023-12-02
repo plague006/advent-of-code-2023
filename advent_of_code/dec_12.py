@@ -6,4 +6,4 @@ def main(lines: list[str]):
 
 
 if __name__ == "__main__":
-    main(get_input_file_lines("dec_12_sample.txt"))
+    main(get_input_file_lines("dec_12"))

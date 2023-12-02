@@ -10,14 +10,36 @@ input_folder.mkdir(exist_ok=True)
 helper = project_folder / "helper.py"
 helper.write_text(
     r"""from pathlib import Path
+from typing import Literal
 
 INPUT_FOLDER = Path(__file__).parent.parent / "input"
 
 
-def get_input_file_lines(filename: str) -> list[str]:
-    input_text = (INPUT_FOLDER / filename).read_text("UTF-8")
+def _select_input_file(folder: Path, day: str) -> Path:
+    real = folder / f"{day}_real.txt"
+    sample = folder / f"{day}_sample.txt"
+    if real.exists() and real.read_text():
+        print(f"Using {real}")
+        return real
+    elif sample.exists() and sample.read_text():
+        print(f"Using {sample}")
+        return sample
+    else:
+        raise ValueError(f"Neither {real} nor {sample} contain any text!")
+
+
+def get_input_file_lines(
+    day: str, file_selection: Literal["sample"] | Literal["real"] | None = None
+) -> list[str]:
+    if file_selection:
+        file = INPUT_FOLDER / (f"{day}_{file_selection}.txt")
+    else:
+        file = _select_input_file(INPUT_FOLDER, day)
+
+    input_text = file.read_text("UTF-8")
     lines = input_text.split("\n")
     return [line for line in lines if line]
+
 """
 )
 
@@ -29,8 +51,11 @@ for day_of_month in range(1, 26):
     (input_folder / f"{date}_real.txt").touch(exist_ok=True)
 
     solution_file = project_folder / f"{date}.py"
+    if solution_file.exists():
+        continue
+
     solution_file.write_text(
-f"""from helper import get_input_file_lines
+        f"""from helper import get_input_file_lines
 
 
 def main(lines: list[str]):
@@ -38,6 +63,6 @@ def main(lines: list[str]):
 
 
 if __name__ == "__main__":
-    main(get_input_file_lines("{date}_sample.txt"))
+    main(get_input_file_lines("{date}"))
 """
     )
