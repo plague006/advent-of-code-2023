@@ -32,4 +32,5 @@ def main(cards: list[str]) -> None:
 
 
 if __name__ == "__main__":
+    main(get_input_file_lines("dec_04", "sample"))
     main(get_input_file_lines("dec_04"))
