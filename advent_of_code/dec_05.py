@@ -46,6 +46,7 @@ def main(lines: list[str]) -> None:
     print("p1 answer:", min(destinations))
 
     # Part 2 will never finish running as-is.
+    # Do it in rust!
 
     p2_lowest_destination = inf
     seed_maps = deduplicate_seed_maps(seeds)
