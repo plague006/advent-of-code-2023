@@ -1,6 +1,7 @@
-from helper import get_input_file_lines
+from helper import get_input_file_lines, Timer
 
 
+@Timer()
 def main(lines: list[str]):
     ...
 
