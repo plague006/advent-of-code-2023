@@ -17,7 +17,7 @@ try:
 
     Timer = codetiming.Timer
 except ModuleNotFoundError:
-    Timer = lambda x: x
+    Timer = lambda: lambda x: x
 
 INPUT_FOLDER = Path(__file__).parent.parent / "input"
 
@@ -46,7 +46,6 @@ def get_input_file_lines(
     input_text = file.read_text("UTF-8")
     lines = input_text.split("\n")
     return [line for line in lines if line]
-
 """
 )
 
