@@ -46,7 +46,8 @@ def get_input_file_lines(
     input_text = file.read_text("UTF-8")
     lines = input_text.split("\n")
     return [line for line in lines if line]
-"""
+""",
+    newline="\n",
 )
 
 # Create daily files
@@ -72,5 +73,6 @@ def main(lines: list[str]):
 if __name__ == "__main__":
     main(get_input_file_lines("{date}", "sample"))
     main(get_input_file_lines("{date}"))
-"""
+""",
+        newline="\n",
     )
