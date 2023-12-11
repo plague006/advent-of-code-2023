@@ -12,6 +12,13 @@ helper.write_text(
     r"""from pathlib import Path
 from typing import Literal
 
+try:
+    import codetiming
+
+    Timer = codetiming.Timer
+except ModuleNotFoundError:
+    Timer = lambda x: x
+
 INPUT_FOLDER = Path(__file__).parent.parent / "input"
 
 
@@ -55,9 +62,10 @@ for day_of_month in range(1, 26):
         continue
 
     solution_file.write_text(
-        f"""from helper import get_input_file_lines
+        f"""from helper import get_input_file_lines, Timer
 
 
+@Timer()
 def main(lines: list[str]):
     ...
 

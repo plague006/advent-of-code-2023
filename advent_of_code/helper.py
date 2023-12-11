@@ -1,6 +1,13 @@
 from pathlib import Path
 from typing import Literal
 
+try:
+    import codetiming
+
+    Timer = codetiming.Timer
+except ModuleNotFoundError:
+    Timer = lambda: lambda x: x
+
 INPUT_FOLDER = Path(__file__).parent.parent / "input"
 
 
