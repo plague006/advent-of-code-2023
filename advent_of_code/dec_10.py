@@ -34,7 +34,7 @@ def print_diagram(grid: Grid) -> None:
         "SW": "┐",
         "SE": "┌",
         "": " ",
-        "NSEW": "┼",
+        "NSEW": "\033[41m⁑\033[0m",
     }
     for row in grid:
         r: list[str] = []
@@ -106,7 +106,7 @@ def main(lines: list[str]) -> None:
     while traveler.take_step() != starting_pos:
         step_counter += 1
 
-    # print_diagram(grid)
+    print_diagram(grid)
     print(f"P1 answer: {step_counter / 2}")
 
 
